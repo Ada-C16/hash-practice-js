@@ -1,5 +1,5 @@
 const {
-  grouped_anagrams,
+  groupedAnagrams,
   top_k_frequent_elements,
   valid_sudoku
 } = require('../lib/exercises');
@@ -12,7 +12,7 @@ describe("exercises", function () {
 
 
       // Act-Assert
-      expect(grouped_anagrams(list)).toEqual([]);
+      expect(groupedAnagrams(list)).toEqual([]);
     });
 
     it("will work for the README example", function () {
@@ -20,8 +20,8 @@ describe("exercises", function () {
       const list = ["eat", "tea", "tan", "ate", "nat", "bat"];
 
       // Act
-      const answer = grouped_anagrams(list);
-      const expected_answer = [
+      const answer = groupedAnagrams(list);
+      const expectedAnswer = [
         ["ate", "eat", "tea"],
         ["nat", "tan"],
         ["bat"]
@@ -30,7 +30,7 @@ describe("exercises", function () {
       // Assert
       expect(answer.length).toBeGreaterThan(0);
       answer.forEach((array, index) => {
-        expect(array.sort()).toEqual(expected_answer[index]);
+        expect(array.sort()).toEqual(expectedAnswer[index]);
       });
     });
 
@@ -39,9 +39,9 @@ describe("exercises", function () {
       const list = ["eat", "ear", "tar", "pop", "pan", "pap"];
 
       // Act
-      const answer = grouped_anagrams(list);
+      const answer = groupedAnagrams(list);
 
-      const expected_answer = [
+      const expectedAnswer = [
         ["eat"],
         ["ear"],
         ["tar"],
@@ -53,7 +53,7 @@ describe("exercises", function () {
       // Assert
       expect(answer.length).toBeGreaterThan(0);
       answer.forEach((array) => {
-        expect(expected_answer).toContainEqual(array.sort());
+        expect(expectedAnswer).toContainEqual(array.sort());
       });
     });
 
@@ -62,15 +62,34 @@ describe("exercises", function () {
       const list = ["eat", "tae", "tea", "eta", "aet", "ate"]
 
       // Act
-      const answer = grouped_anagrams(list);
-      const expected_answer = [
+      const answer = groupedAnagrams(list);
+      const expectedAnswer = [
         ["aet", "ate", "eat", "eta", "tae", "tea"]
       ];
 
       // Assert
       expect(answer.length).toBeGreaterThan(0);
       answer.forEach((array) => {
-        expect(expected_answer).toContainEqual(array.sort());
+        expect(expectedAnswer).toContainEqual(array.sort());
+      });
+    });
+
+    it("will work for longer strings", function () {
+      // Arrange
+      const list = ["bored", "players", "sadder", "dreads", "robed", "parsley"];
+
+      // Act
+      const answer = groupedAnagrams(list);
+      const expectedAnswer = [
+        ["bored", "robed"],
+        ["parsley", "players"],
+        ["dreads", "sadder"],
+      ];
+
+      // Assert
+      expect(answer.length).toBeGreaterThan(0);
+      answer.forEach((array) => {
+        expect(expectedAnswer).toContainEqual(array.sort());
       });
     });
   });
